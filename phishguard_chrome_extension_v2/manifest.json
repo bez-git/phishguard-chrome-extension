@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "PhishGuard",
+  "version": "0.2.1",
+  "description": "Login to PhishGuard and scan pages for risky links.",
+  "action": { "default_title": "PhishGuard", "default_popup": "popup.html" },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "webNavigation",
+    "notifications",
+    "contextMenus",
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "http://127.0.0.1:5000/*",
+    "https://phishguard.shop/*",
+    "https://www.phishguard.shop/*"
+  ],
+  "background": { "service_worker": "background.js" }
+}

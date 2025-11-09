@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>PhishGuard</title>
+    <style>
+      body { font-family: system-ui, sans-serif; width: 360px; padding: 12px; }
+      h1 { font-size: 18px; margin: 0 0 8px; }
+      label { display:block; font-size: 12px; margin-top: 8px; }
+      input, button { width: 100%; box-sizing: border-box; }
+      button { margin-top: 10px; padding: 8px; }
+      .row { display: flex; gap: 8px; margin-top: 8px; }
+      .row > button { flex: 1; }
+      .small { font-size: 12px; color: #555; }
+      pre { white-space: pre-wrap; word-break: break-all; background: #f5f5f5; padding: 8px; border-radius: 6px; }
+      .ok { color: #117a2f; } .err { color: #a20000; }
+      table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12px; }
+      th, td { padding: 6px; border-bottom: 1px solid #eee; text-align: left; }
+      .score { width: 60px; text-align: right; }
+      .label-bad { color: #b00020; font-weight: 600; }
+      .label-warn { color: #b36b00; font-weight: 600; }
+      .label-ok { color: #0a7a27; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <h1>PhishGuard</h1>
+    <div id="status" class="small"></div>
+
+    <label>Email</label>
+    <input id="email" type="email" placeholder="you@example.com" />
+
+    <label>Password</label>
+    <input id="password" type="password" placeholder="••••••••" />
+
+    <button id="loginBtn">Log in</button>
+
+    <div class="row">
+      <button id="meBtn">/api/me</button>
+      <button id="refreshBtn">Refresh token</button>
+    </div>
+
+    <div class="row">
+      <button id="scanBtn">Scan this page</button>
+    </div>
+
+    <label style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+      <input id="externalOnly" type="checkbox" checked>
+      Scan external links only
+    </label>
+
+    <div class="small" style="margin-top:6px;">Scan results (top 50):</div>
+    <table id="scanTable">
+      <thead><tr><th>Label</th><th>URL</th><th class="score">Score</th></tr></thead>
+      <tbody></tbody>
+    </table>
+
+    <label style="display:flex;align-items:center;gap:8px;margin-top:8px;">
+      <input id="autoscan" type="checkbox" checked>
+      Auto-scan page URL (badge)
+    </label>
+
+    <label style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+     <input id="autoscanLinks" type="checkbox" checked>
+     Auto-scan links on pages
+    </label>
+
+    <div class="small">Access token (truncated):</div>
+    <pre id="accessOut"></pre>
+
+    <div class="small">Output:</div>
+    <pre id="output"></pre>
+
+    <div class="small">Recent reports:</div>
+    <ul id="reportList"></ul>
+
+    <div class="small">Last 5 checks (badge):</div>
+    <ul id="checkList"></ul>
+
+    <script src="config.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
